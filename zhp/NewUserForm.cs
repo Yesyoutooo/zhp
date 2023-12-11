@@ -74,5 +74,10 @@ namespace zhp
             Regex r = new Regex("^[0-9]{4}$");
             return r.IsMatch(year_txt);
         }
+
+        private void NewUserForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

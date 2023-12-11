@@ -33,6 +33,7 @@
             txt_zenezszerzo = new TextBox();
             lbox_zeneszerzo = new ListBox();
             btn_opera_add = new Button();
+            btn_remove_opera = new Button();
             SuspendLayout();
             // 
             // lbox_opera
@@ -74,19 +75,30 @@
             // 
             // btn_opera_add
             // 
-            btn_opera_add.Location = new Point(496, 95);
+            btn_opera_add.Location = new Point(424, 68);
             btn_opera_add.Name = "btn_opera_add";
-            btn_opera_add.Size = new Size(75, 23);
+            btn_opera_add.Size = new Size(100, 100);
             btn_opera_add.TabIndex = 5;
-            btn_opera_add.Text = "button1";
+            btn_opera_add.Text = "Opera hozzáadás a kijelölt zeneszerzőhöz";
             btn_opera_add.UseVisualStyleBackColor = true;
             btn_opera_add.Click += btn_opera_add_Click;
+            // 
+            // btn_remove_opera
+            // 
+            btn_remove_opera.Location = new Point(424, 174);
+            btn_remove_opera.Name = "btn_remove_opera";
+            btn_remove_opera.Size = new Size(100, 100);
+            btn_remove_opera.TabIndex = 6;
+            btn_remove_opera.Text = "Kijelölt opera törlése";
+            btn_remove_opera.UseVisualStyleBackColor = true;
+            btn_remove_opera.Click += btn_remove_opera_Click;
             // 
             // UserControl1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.RosyBrown;
+            Controls.Add(btn_remove_opera);
             Controls.Add(btn_opera_add);
             Controls.Add(txt_zenezszerzo);
             Controls.Add(lbox_zeneszerzo);
@@ -106,5 +118,6 @@
         private ListBox lbox_zeneszerzo;
         private Button button1;
         private Button btn_opera_add;
+        private Button btn_remove_opera;
     }
 }

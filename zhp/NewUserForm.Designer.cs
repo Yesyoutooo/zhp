@@ -136,6 +136,7 @@
             Name = "NewUserForm";
             ShowInTaskbar = false;
             Text = "NewUserForm";
+            Load += NewUserForm_Load;
             ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
             PerformLayout();

@@ -30,21 +30,24 @@
         {
             components = new System.ComponentModel.Container();
             dataGridView1 = new DataGridView();
-            előadáBindingSource = new BindingSource(components);
             előadásIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             premierDátumDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             előadásokSzámaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             városDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            kezdésIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            évadIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            rendezésIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            operaIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            kezdésDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            operaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            rendezésDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            városNavigationDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            évadDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            kezdésIdDataGridViewTextBoxColumn = new DataGridViewComboBoxColumn();
+            kezdésAdatokBindingSource = new BindingSource(components);
+            évadIdDataGridViewTextBoxColumn = new DataGridViewComboBoxColumn();
+            évadAdatokBindingSource = new BindingSource(components);
+            rendezésIdDataGridViewTextBoxColumn = new DataGridViewComboBoxColumn();
+            rendezésAdatokBindingSource = new BindingSource(components);
+            operaIdDataGridViewTextBoxColumn = new DataGridViewComboBoxColumn();
+            operaAdatokBindingSource = new BindingSource(components);
+            előadáBindingSource = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)kezdésAdatokBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)évadAdatokBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)rendezésAdatokBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)operaAdatokBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)előadáBindingSource).BeginInit();
             SuspendLayout();
             // 
@@ -53,16 +56,13 @@
             dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { előadásIdDataGridViewTextBoxColumn, premierDátumDataGridViewTextBoxColumn, előadásokSzámaDataGridViewTextBoxColumn, városDataGridViewTextBoxColumn, kezdésIdDataGridViewTextBoxColumn, évadIdDataGridViewTextBoxColumn, rendezésIdDataGridViewTextBoxColumn, operaIdDataGridViewTextBoxColumn, kezdésDataGridViewTextBoxColumn, operaDataGridViewTextBoxColumn, rendezésDataGridViewTextBoxColumn, városNavigationDataGridViewTextBoxColumn, évadDataGridViewTextBoxColumn });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { előadásIdDataGridViewTextBoxColumn, premierDátumDataGridViewTextBoxColumn, előadásokSzámaDataGridViewTextBoxColumn, városDataGridViewTextBoxColumn, kezdésIdDataGridViewTextBoxColumn, évadIdDataGridViewTextBoxColumn, rendezésIdDataGridViewTextBoxColumn, operaIdDataGridViewTextBoxColumn });
             dataGridView1.DataSource = előadáBindingSource;
-            dataGridView1.Location = new Point(97, 45);
+            dataGridView1.Location = new Point(0, 45);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(740, 515);
+            dataGridView1.Size = new Size(840, 515);
             dataGridView1.TabIndex = 0;
-            // 
-            // előadáBindingSource
-            // 
-            előadáBindingSource.DataSource = typeof(Models.Előadá);
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // előadásIdDataGridViewTextBoxColumn
             // 
@@ -91,56 +91,66 @@
             // kezdésIdDataGridViewTextBoxColumn
             // 
             kezdésIdDataGridViewTextBoxColumn.DataPropertyName = "KezdésId";
+            kezdésIdDataGridViewTextBoxColumn.DataSource = kezdésAdatokBindingSource;
+            kezdésIdDataGridViewTextBoxColumn.DisplayMember = "KezdésTípus";
             kezdésIdDataGridViewTextBoxColumn.HeaderText = "KezdésId";
             kezdésIdDataGridViewTextBoxColumn.Name = "kezdésIdDataGridViewTextBoxColumn";
+            kezdésIdDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
+            kezdésIdDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.Automatic;
+            kezdésIdDataGridViewTextBoxColumn.ValueMember = "KezdésId";
+            // 
+            // kezdésAdatokBindingSource
+            // 
+            kezdésAdatokBindingSource.DataSource = typeof(Models.KezdésAdatok);
             // 
             // évadIdDataGridViewTextBoxColumn
             // 
             évadIdDataGridViewTextBoxColumn.DataPropertyName = "ÉvadId";
+            évadIdDataGridViewTextBoxColumn.DataSource = évadAdatokBindingSource;
+            évadIdDataGridViewTextBoxColumn.DisplayMember = "ÉvadMegnevezése";
             évadIdDataGridViewTextBoxColumn.HeaderText = "ÉvadId";
             évadIdDataGridViewTextBoxColumn.Name = "évadIdDataGridViewTextBoxColumn";
+            évadIdDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
+            évadIdDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.Automatic;
+            évadIdDataGridViewTextBoxColumn.ValueMember = "ÉvadId";
+            // 
+            // évadAdatokBindingSource
+            // 
+            évadAdatokBindingSource.DataSource = typeof(Models.ÉvadAdatok);
             // 
             // rendezésIdDataGridViewTextBoxColumn
             // 
             rendezésIdDataGridViewTextBoxColumn.DataPropertyName = "RendezésId";
+            rendezésIdDataGridViewTextBoxColumn.DataSource = rendezésAdatokBindingSource;
+            rendezésIdDataGridViewTextBoxColumn.DisplayMember = "RendezésTípus";
             rendezésIdDataGridViewTextBoxColumn.HeaderText = "RendezésId";
             rendezésIdDataGridViewTextBoxColumn.Name = "rendezésIdDataGridViewTextBoxColumn";
+            rendezésIdDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
+            rendezésIdDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.Automatic;
+            rendezésIdDataGridViewTextBoxColumn.ValueMember = "RendezésId";
+            // 
+            // rendezésAdatokBindingSource
+            // 
+            rendezésAdatokBindingSource.DataSource = typeof(Models.RendezésAdatok);
             // 
             // operaIdDataGridViewTextBoxColumn
             // 
             operaIdDataGridViewTextBoxColumn.DataPropertyName = "OperaId";
+            operaIdDataGridViewTextBoxColumn.DataSource = operaAdatokBindingSource;
+            operaIdDataGridViewTextBoxColumn.DisplayMember = "OperaCíme";
             operaIdDataGridViewTextBoxColumn.HeaderText = "OperaId";
             operaIdDataGridViewTextBoxColumn.Name = "operaIdDataGridViewTextBoxColumn";
+            operaIdDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
+            operaIdDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.Automatic;
+            operaIdDataGridViewTextBoxColumn.ValueMember = "OperaId";
             // 
-            // kezdésDataGridViewTextBoxColumn
+            // operaAdatokBindingSource
             // 
-            kezdésDataGridViewTextBoxColumn.DataPropertyName = "Kezdés";
-            kezdésDataGridViewTextBoxColumn.HeaderText = "Kezdés";
-            kezdésDataGridViewTextBoxColumn.Name = "kezdésDataGridViewTextBoxColumn";
+            operaAdatokBindingSource.DataSource = typeof(Models.OperaAdatok);
             // 
-            // operaDataGridViewTextBoxColumn
+            // előadáBindingSource
             // 
-            operaDataGridViewTextBoxColumn.DataPropertyName = "Opera";
-            operaDataGridViewTextBoxColumn.HeaderText = "Opera";
-            operaDataGridViewTextBoxColumn.Name = "operaDataGridViewTextBoxColumn";
-            // 
-            // rendezésDataGridViewTextBoxColumn
-            // 
-            rendezésDataGridViewTextBoxColumn.DataPropertyName = "Rendezés";
-            rendezésDataGridViewTextBoxColumn.HeaderText = "Rendezés";
-            rendezésDataGridViewTextBoxColumn.Name = "rendezésDataGridViewTextBoxColumn";
-            // 
-            // városNavigationDataGridViewTextBoxColumn
-            // 
-            városNavigationDataGridViewTextBoxColumn.DataPropertyName = "VárosNavigation";
-            városNavigationDataGridViewTextBoxColumn.HeaderText = "VárosNavigation";
-            városNavigationDataGridViewTextBoxColumn.Name = "városNavigationDataGridViewTextBoxColumn";
-            // 
-            // évadDataGridViewTextBoxColumn
-            // 
-            évadDataGridViewTextBoxColumn.DataPropertyName = "Évad";
-            évadDataGridViewTextBoxColumn.HeaderText = "Évad";
-            évadDataGridViewTextBoxColumn.Name = "évadDataGridViewTextBoxColumn";
+            előadáBindingSource.DataSource = typeof(Models.Előadá);
             // 
             // UserControl2
             // 
@@ -152,6 +162,10 @@
             Size = new Size(840, 593);
             Load += UserControl2_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)kezdésAdatokBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)évadAdatokBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)rendezésAdatokBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)operaAdatokBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)előadáBindingSource).EndInit();
             ResumeLayout(false);
         }
@@ -159,19 +173,18 @@
         #endregion
 
         private DataGridView dataGridView1;
+        private BindingSource előadáBindingSource;
         private DataGridViewTextBoxColumn előadásIdDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn premierDátumDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn előadásokSzámaDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn városDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn kezdésIdDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn évadIdDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn rendezésIdDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn operaIdDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn kezdésDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn operaDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn rendezésDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn városNavigationDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn évadDataGridViewTextBoxColumn;
-        private BindingSource előadáBindingSource;
+        private DataGridViewComboBoxColumn kezdésIdDataGridViewTextBoxColumn;
+        private BindingSource kezdésAdatokBindingSource;
+        private DataGridViewComboBoxColumn évadIdDataGridViewTextBoxColumn;
+        private BindingSource évadAdatokBindingSource;
+        private DataGridViewComboBoxColumn rendezésIdDataGridViewTextBoxColumn;
+        private BindingSource rendezésAdatokBindingSource;
+        private DataGridViewComboBoxColumn operaIdDataGridViewTextBoxColumn;
+        private BindingSource operaAdatokBindingSource;
     }
 }

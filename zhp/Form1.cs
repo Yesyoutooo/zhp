@@ -29,6 +29,15 @@ namespace zhp
 
             userControl2.Dock = DockStyle.Fill;
         }
+        private void btn_uc3_Click(object sender, EventArgs e)
+        {
+            Panel1.Controls.Clear();
+            UserControl3 userControl3 = new UserControl3();
+
+            Panel1.Controls.Add(userControl3);
+
+            userControl3.Dock = DockStyle.Fill;
+        }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             string message = "lol";
@@ -39,5 +48,7 @@ namespace zhp
 
             e.Cancel = (result == DialogResult.No);
         }
+
+
     }
 }

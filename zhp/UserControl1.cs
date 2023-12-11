@@ -22,6 +22,7 @@ namespace zhp
             Zeneszerzo_Filter();
             lbox_zeneszerzo.DisplayMember = "Név";
 
+            lbox_opera.ValueMember = "OperaId";
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -73,9 +74,11 @@ namespace zhp
             {
                 if (opad.OperaId >= max_ID)
                 {
-                    max_ID++;
+                    max_ID = opad.OperaId;
                 }
             }
+            max_ID++;
+
             var selected_zeneszerzoID = ((Zeneszerző)lbox_zeneszerzo.SelectedItem).ZenId;
             OperaAdatok operaAdatok = new OperaAdatok()
             {
@@ -98,40 +101,21 @@ namespace zhp
             Opera_Adatok_Filter();
         }
 
-        //private void btn_remove_opera_Click(object sender, EventArgs e)
-        //{
-        //    var selected_opera = (OperaAdatok)lbox_opera.SelectedItem;
+        private void btn_remove_opera_Click(object sender, EventArgs e)
+        {
+            DeleteUserForm delete_User_Form = new DeleteUserForm();
+            if (delete_User_Form.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+            int torolni_opera_ID = Convert.ToInt32(lbox_opera.SelectedValue);
 
-        //    var delete_eloadas = (from x in context.Előadás
-        //                          where x.OperaId == selected_opera.OperaId
-        //                          select x).FirstOrDefault();
-        //    var delete_opera = (from x in context.OperaAdatoks
-        //                        where x.OperaId == selected_opera.OperaId
-        //                        select x).FirstOrDefault();
-
-        //    context.Előadás.Remove(delete_eloadas);
-
-        //    try
-        //    {
-        //        context.SaveChanges();
-        //    }
-        //    catch (Exception err)
-        //    {
-
-        //        MessageBox.Show(err.Message);
-        //    }
-        //    context.OperaAdatoks.Remove(delete_opera);
-        //    try
-        //    {
-        //        context.SaveChanges();
-        //    }
-        //    catch (Exception err)
-        //    {
-
-        //        MessageBox.Show(err.Message);
-        //    }
-        //    Opera_Adatok_Filter();
-        //}
-
+            var torolni_opera = from x in context.OperaAdatoks
+                                where x.OperaId == torolni_opera_ID
+                                select x;
+            context.OperaAdatoks.Remove(torolni_opera.FirstOrDefault());
+            context.SaveChanges();
+            Opera_Adatok_Filter();
+        }
     }
 }
