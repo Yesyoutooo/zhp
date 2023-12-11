@@ -32,6 +32,7 @@
             txt_opera = new TextBox();
             txt_zenezszerzo = new TextBox();
             lbox_zeneszerzo = new ListBox();
+            btn_opera_add = new Button();
             SuspendLayout();
             // 
             // lbox_opera
@@ -43,7 +44,6 @@
             lbox_opera.Name = "lbox_opera";
             lbox_opera.Size = new Size(221, 529);
             lbox_opera.TabIndex = 0;
-            lbox_opera.SelectedIndexChanged += lbox_opera_SelectedIndexChanged;
             // 
             // txt_opera
             // 
@@ -72,11 +72,22 @@
             lbox_zeneszerzo.TabIndex = 3;
             lbox_zeneszerzo.SelectedIndexChanged += lbox_zeneszerzo_SelectedIndexChanged;
             // 
+            // btn_opera_add
+            // 
+            btn_opera_add.Location = new Point(496, 95);
+            btn_opera_add.Name = "btn_opera_add";
+            btn_opera_add.Size = new Size(75, 23);
+            btn_opera_add.TabIndex = 5;
+            btn_opera_add.Text = "button1";
+            btn_opera_add.UseVisualStyleBackColor = true;
+            btn_opera_add.Click += btn_opera_add_Click;
+            // 
             // UserControl1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.RosyBrown;
+            Controls.Add(btn_opera_add);
             Controls.Add(txt_zenezszerzo);
             Controls.Add(lbox_zeneszerzo);
             Controls.Add(txt_opera);
@@ -93,5 +104,7 @@
         private TextBox txt_opera;
         private TextBox txt_zenezszerzo;
         private ListBox lbox_zeneszerzo;
+        private Button button1;
+        private Button btn_opera_add;
     }
 }

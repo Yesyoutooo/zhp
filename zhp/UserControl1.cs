@@ -14,12 +14,14 @@ namespace zhp
     public partial class UserControl1 : UserControl
     {
         Context context = new Context();
+
         public UserControl1()
         {
             InitializeComponent();
 
             Zeneszerzo_Filter();
             lbox_zeneszerzo.DisplayMember = "Név";
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -58,54 +60,78 @@ namespace zhp
             lbox_opera.DisplayMember = "OperaCíme";
         }
 
-        private void btn_remove_opera_Click(object sender, EventArgs e)
+        private void btn_opera_add_Click(object sender, EventArgs e)
         {
-            var selected_opera = (OperaAdatok)lbox_opera.SelectedItem;
+            NewUserForm newUserForm = new NewUserForm();
+            if (newUserForm.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
 
-            var delete_eloadas = (from x in context.Előadás
-                                  where x.OperaId == selected_opera.OperaId
-                                  select x).FirstOrDefault();
-            var delete_opera = (from x in context.OperaAdatoks
-                                where x.OperaId == selected_opera.OperaId
-                                select x).FirstOrDefault();
+            int max_ID = 0;
+            foreach (var opad in context.OperaAdatoks)
+            {
+                if (opad.OperaId >= max_ID)
+                {
+                    max_ID++;
+                }
+            }
+            var selected_zeneszerzoID = ((Zeneszerző)lbox_zeneszerzo.SelectedItem).ZenId;
+            OperaAdatok operaAdatok = new OperaAdatok()
+            {
+                OperaId = max_ID,
+                ZeneszerzőId = selected_zeneszerzoID,
+                OperaCíme = newUserForm.txt_cim.Text,
+                Éneknyelv = newUserForm.txt_nyelv.Text,
+                ŐsbemutatóÉve = newUserForm.txt_osbem.Text
+            };
 
-            context.Előadás.Remove(delete_eloadas);
-
+            context.OperaAdatoks.Add(operaAdatok);
             try
             {
                 context.SaveChanges();
             }
             catch (Exception err)
             {
-
-                MessageBox.Show(err.Message);
-            }
-            context.OperaAdatoks.Remove(delete_opera);
-            try
-            {
-                context.SaveChanges();
-            }
-            catch (Exception err)
-            {
-
                 MessageBox.Show(err.Message);
             }
             Opera_Adatok_Filter();
         }
 
-        private void lbox_main_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        //private void btn_remove_opera_Click(object sender, EventArgs e)
+        //{
+        //    var selected_opera = (OperaAdatok)lbox_opera.SelectedItem;
 
-        }
+        //    var delete_eloadas = (from x in context.Előadás
+        //                          where x.OperaId == selected_opera.OperaId
+        //                          select x).FirstOrDefault();
+        //    var delete_opera = (from x in context.OperaAdatoks
+        //                        where x.OperaId == selected_opera.OperaId
+        //                        select x).FirstOrDefault();
 
-        private void txt_main_TextChanged(object sender, EventArgs e)
-        {
+        //    context.Előadás.Remove(delete_eloadas);
 
-        }
+        //    try
+        //    {
+        //        context.SaveChanges();
+        //    }
+        //    catch (Exception err)
+        //    {
 
-        private void lbox_opera_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        //        MessageBox.Show(err.Message);
+        //    }
+        //    context.OperaAdatoks.Remove(delete_opera);
+        //    try
+        //    {
+        //        context.SaveChanges();
+        //    }
+        //    catch (Exception err)
+        //    {
 
-        }
+        //        MessageBox.Show(err.Message);
+        //    }
+        //    Opera_Adatok_Filter();
+        //}
+
     }
 }
