@@ -22,10 +22,10 @@ namespace zhp
         private void UserControl2_Load(object sender, EventArgs e)
         {
             előadáBindingSource.DataSource = context.Előadás.ToList();
-            operaAdatokBindingSource.DataSource = context.OperaAdatoks.ToList();
-            rendezésAdatokBindingSource.DataSource = context.RendezésAdatoks.ToList();
-            kezdésAdatokBindingSource.DataSource = context.KezdésAdatoks.ToList();
-            évadAdatokBindingSource.DataSource = context.ÉvadAdatoks.ToList();
+            operaAdatokBindingSource.DataSource = context.OperaAdatok.ToList();
+            rendezésAdatokBindingSource.DataSource = context.RendezésAdatok.ToList();
+            kezdésAdatokBindingSource.DataSource = context.KezdésAdatok.ToList();
+            évadAdatokBindingSource.DataSource = context.ÉvadAdatok.ToList();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

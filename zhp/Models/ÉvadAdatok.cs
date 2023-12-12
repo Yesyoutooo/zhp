@@ -9,5 +9,5 @@ public partial class ÉvadAdatok
 
     public string ÉvadMegnevezése { get; set; } = null!;
 
-    public virtual ICollection<Előadá> Előadás { get; set; } = new List<Előadá>();
+    public virtual ICollection<Előadás> Előadás { get; set; } = new List<Előadás>();
 }

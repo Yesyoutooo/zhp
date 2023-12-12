@@ -5,7 +5,7 @@ namespace zhp.Models;
 
 public partial class Zeneszerző
 {
-    public int? ZenId { get; set; }
+    public int ZenId { get; set; }
 
     public string Név { get; set; } = null!;
 
@@ -17,5 +17,5 @@ public partial class Zeneszerző
 
     public string Nem { get; set; } = null!;
 
-    public virtual ICollection<OperaAdatok> OperaAdatoks { get; set; } = new List<OperaAdatok>();
+    public virtual ICollection<OperaAdatok> OperaAdatok { get; set; } = new List<OperaAdatok>();
 }

@@ -1,0 +1,6 @@
+@ezis__HostAddress = http://localhost:5250
+
+GET {{ezis__HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

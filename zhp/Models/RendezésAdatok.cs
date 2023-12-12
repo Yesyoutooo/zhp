@@ -9,5 +9,5 @@ public partial class RendezésAdatok
 
     public string RendezésTípus { get; set; } = null!;
 
-    public virtual ICollection<Előadá> Előadás { get; set; } = new List<Előadá>();
+    public virtual ICollection<Előadás> Előadás { get; set; } = new List<Előadás>();
 }

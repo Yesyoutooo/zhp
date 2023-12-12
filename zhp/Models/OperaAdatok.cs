@@ -7,7 +7,7 @@ public partial class OperaAdatok
 {
     public int OperaId { get; set; }
 
-    public int? ZeneszerzőId { get; set; }
+    public int ZeneszerzőId { get; set; }
 
     public string OperaCíme { get; set; } = null!;
 
@@ -15,7 +15,7 @@ public partial class OperaAdatok
 
     public string? ŐsbemutatóÉve { get; set; }
 
-    public virtual ICollection<Előadá> Előadás { get; set; } = new List<Előadá>();
+    public virtual ICollection<Előadás> Előadás { get; set; } = new List<Előadás>();
 
     public virtual Zeneszerző Zeneszerző { get; set; } = null!;
 }

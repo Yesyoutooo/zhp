@@ -15,29 +15,29 @@ public partial class Context : DbContext
     {
     }
 
-    public virtual DbSet<Előadá> Előadás { get; set; }
+    public virtual DbSet<Előadás> Előadás { get; set; }
 
-    public virtual DbSet<ElőadásHelyszín> ElőadásHelyszíns { get; set; }
+    public virtual DbSet<ElőadásHelyszín> ElőadásHelyszín { get; set; }
 
-    public virtual DbSet<KezdésAdatok> KezdésAdatoks { get; set; }
+    public virtual DbSet<KezdésAdatok> KezdésAdatok { get; set; }
 
-    public virtual DbSet<OperaAdatok> OperaAdatoks { get; set; }
+    public virtual DbSet<OperaAdatok> OperaAdatok { get; set; }
 
-    public virtual DbSet<RendezésAdatok> RendezésAdatoks { get; set; }
+    public virtual DbSet<RendezésAdatok> RendezésAdatok { get; set; }
 
-    public virtual DbSet<Zeneszerző> Zeneszerzős { get; set; }
+    public virtual DbSet<Zeneszerző> Zeneszerző { get; set; }
 
-    public virtual DbSet<ÉvadAdatok> ÉvadAdatoks { get; set; }
+    public virtual DbSet<ÉvadAdatok> ÉvadAdatok { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\balazs\\source\\repos\\zhp\\zhp\\Database1.mdf;Integrated Security=True");
+        => optionsBuilder.UseSqlServer("Data Source=szofteng-sokadik.database.windows.net;Initial Catalog=OperaDB;User ID=hallgato;Password=Password123;Encrypt=False");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Előadá>(entity =>
+        modelBuilder.Entity<Előadás>(entity =>
         {
-            entity.HasKey(e => e.ElőadásId).HasName("PK__Előadás__7F2A1E4128E18A48");
+            entity.HasKey(e => e.ElőadásId).HasName("PK__Előadás__7F2A1E41536A8B41");
 
             entity.Property(e => e.ElőadásId)
                 .ValueGeneratedNever()
@@ -57,32 +57,32 @@ public partial class Context : DbContext
             entity.HasOne(d => d.Kezdés).WithMany(p => p.Előadás)
                 .HasForeignKey(d => d.KezdésId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Előadás__KezdésI__4AB81AF0");
+                .HasConstraintName("FK__Előadás__KezdésI__70DDC3D8");
 
             entity.HasOne(d => d.Opera).WithMany(p => p.Előadás)
                 .HasForeignKey(d => d.OperaId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Előadás__OperaID__4D94879B");
+                .HasConstraintName("FK__Előadás__OperaID__73BA3083");
 
             entity.HasOne(d => d.Rendezés).WithMany(p => p.Előadás)
                 .HasForeignKey(d => d.RendezésId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Előadás__Rendezé__4CA06362");
+                .HasConstraintName("FK__Előadás__Rendezé__72C60C4A");
 
             entity.HasOne(d => d.VárosNavigation).WithMany(p => p.Előadás)
                 .HasForeignKey(d => d.Város)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Előadás__Város__49C3F6B7");
+                .HasConstraintName("FK__Előadás__Város__6FE99F9F");
 
             entity.HasOne(d => d.Évad).WithMany(p => p.Előadás)
                 .HasForeignKey(d => d.ÉvadId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Előadás__ÉvadID__4BAC3F29");
+                .HasConstraintName("FK__Előadás__ÉvadID__71D1E811");
         });
 
         modelBuilder.Entity<ElőadásHelyszín>(entity =>
         {
-            entity.HasKey(e => e.Város).HasName("PK__Előadás___DD21ED614663EC06");
+            entity.HasKey(e => e.Város).HasName("PK__Előadás___DD21ED61DABAA5ED");
 
             entity.ToTable("Előadás_Helyszín");
 
@@ -100,7 +100,7 @@ public partial class Context : DbContext
 
         modelBuilder.Entity<KezdésAdatok>(entity =>
         {
-            entity.HasKey(e => e.KezdésId).HasName("PK__Kezdés_A__144BDAC635597E1A");
+            entity.HasKey(e => e.KezdésId).HasName("PK__Kezdés_A__144BDAC65C459CC3");
 
             entity.ToTable("Kezdés_Adatok");
 
@@ -115,7 +115,7 @@ public partial class Context : DbContext
 
         modelBuilder.Entity<OperaAdatok>(entity =>
         {
-            entity.HasKey(e => e.OperaId).HasName("PK__Opera_Ad__3C56D52422B9E286");
+            entity.HasKey(e => e.OperaId).HasName("PK__Opera_Ad__3C56D524D68F4C78");
 
             entity.ToTable("Opera_Adatok");
 
@@ -139,15 +139,15 @@ public partial class Context : DbContext
                 .HasDefaultValueSql("('n. a.')")
                 .HasColumnName("Ősbemutató_éve");
 
-            entity.HasOne(d => d.Zeneszerző).WithMany(p => p.OperaAdatoks)
+            entity.HasOne(d => d.Zeneszerző).WithMany(p => p.OperaAdatok)
                 .HasForeignKey(d => d.ZeneszerzőId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Opera_Ada__Zenes__403A8C7D");
+                .HasConstraintName("FK__Opera_Ada__Zenes__66603565");
         });
 
         modelBuilder.Entity<RendezésAdatok>(entity =>
         {
-            entity.HasKey(e => e.RendezésId).HasName("PK__Rendezés__BC0FA7013C332EF6");
+            entity.HasKey(e => e.RendezésId).HasName("PK__Rendezés__BC0FA7013983A66A");
 
             entity.ToTable("Rendezés_Adatok");
 
@@ -162,9 +162,7 @@ public partial class Context : DbContext
 
         modelBuilder.Entity<Zeneszerző>(entity =>
         {
-            entity.HasKey(e => e.ZenId).HasName("PK__Zeneszer__718D8835C5B2FD48");
-
-            entity.ToTable("Zeneszerző");
+            entity.HasKey(e => e.ZenId).HasName("PK__Zeneszer__718D8835CC5E3D1D");
 
             entity.HasIndex(e => e.Név, "unique_név").IsUnique();
 
@@ -190,7 +188,7 @@ public partial class Context : DbContext
 
         modelBuilder.Entity<ÉvadAdatok>(entity =>
         {
-            entity.HasKey(e => e.ÉvadId).HasName("PK__Évad_Ada__26A0EB5948730E35");
+            entity.HasKey(e => e.ÉvadId).HasName("PK__Évad_Ada__26A0EB59EB1940B5");
 
             entity.ToTable("Évad_Adatok");
 

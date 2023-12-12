@@ -33,7 +33,7 @@ namespace zhp
         private void Opera_Adatok_Filter()
         {
             var selected_zeneszerzoID = ((Zeneszerző)lbox_zeneszerzo.SelectedItem).ZenId;
-            lbox_opera.DataSource = (from x in context.OperaAdatoks
+            lbox_opera.DataSource = (from x in context.OperaAdatok
                                      where x.ZeneszerzőId == selected_zeneszerzoID
                                      where x.OperaCíme.Contains(txt_opera.Text)
                                      select x).ToList();
@@ -46,7 +46,7 @@ namespace zhp
 
         private void Zeneszerzo_Filter()
         {
-            lbox_zeneszerzo.DataSource = (from x in context.Zeneszerzős
+            lbox_zeneszerzo.DataSource = (from x in context.Zeneszerző
                                           where x.Név.Contains(txt_zenezszerzo.Text)
                                           select x).ToList();
         }
@@ -54,7 +54,7 @@ namespace zhp
         private void lbox_zeneszerzo_SelectedIndexChanged(object sender, EventArgs e)
         {
             var selected_zeneszerzoID = ((Zeneszerző)lbox_zeneszerzo.SelectedItem).ZenId;
-            var operak = from x in context.OperaAdatoks
+            var operak = from x in context.OperaAdatok
                          where x.ZeneszerzőId == selected_zeneszerzoID
                          select x;
             lbox_opera.DataSource = operak.ToList();
@@ -70,7 +70,7 @@ namespace zhp
             }
 
             int max_ID = 0;
-            foreach (var opad in context.OperaAdatoks)
+            foreach (var opad in context.OperaAdatok)
             {
                 if (opad.OperaId >= max_ID)
                 {
@@ -89,7 +89,7 @@ namespace zhp
                 ŐsbemutatóÉve = newUserForm.txt_osbem.Text
             };
 
-            context.OperaAdatoks.Add(operaAdatok);
+            context.OperaAdatok.Add(operaAdatok);
             try
             {
                 context.SaveChanges();
@@ -110,14 +110,14 @@ namespace zhp
             }
             int torolni_opera_ID = Convert.ToInt32(lbox_opera.SelectedValue);
 
-            var torolni_opera = from x in context.OperaAdatoks
+            var torolni_opera = from x in context.OperaAdatok
                                 where x.OperaId == torolni_opera_ID
                                 select x;
             var torolni_eloadas = from x in context.Előadás
                                   where x.OperaId == torolni_opera_ID
                                   select x;
             context.Előadás.Remove(torolni_eloadas.FirstOrDefault());
-            context.OperaAdatoks.Remove(torolni_opera.FirstOrDefault());
+            context.OperaAdatok.Remove(torolni_opera.FirstOrDefault());
             context.SaveChanges();
             Opera_Adatok_Filter();
         }
