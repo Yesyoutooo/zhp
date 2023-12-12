@@ -31,7 +31,6 @@
             Panel1 = new Button();
             btn_uc1 = new Button();
             btn_uc2 = new Button();
-            btn_uc3 = new Button();
             SuspendLayout();
             // 
             // Panel1
@@ -63,22 +62,11 @@
             btn_uc2.UseVisualStyleBackColor = true;
             btn_uc2.Click += btn_uc2_Click;
             // 
-            // btn_uc3
-            // 
-            btn_uc3.Location = new Point(12, 186);
-            btn_uc3.Name = "btn_uc3";
-            btn_uc3.Size = new Size(84, 65);
-            btn_uc3.TabIndex = 4;
-            btn_uc3.Text = "UserControl3";
-            btn_uc3.UseVisualStyleBackColor = true;
-            btn_uc3.Click += btn_uc3_Click;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(btn_uc3);
             Controls.Add(btn_uc2);
             Controls.Add(btn_uc1);
             Controls.Add(Panel1);
@@ -92,6 +80,5 @@
         private Button Panel1;
         private Button btn_uc1;
         private Button btn_uc2;
-        private Button btn_uc3;
     }
 }

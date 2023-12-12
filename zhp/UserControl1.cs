@@ -113,6 +113,10 @@ namespace zhp
             var torolni_opera = from x in context.OperaAdatoks
                                 where x.OperaId == torolni_opera_ID
                                 select x;
+            var torolni_eloadas = from x in context.Előadás
+                                  where x.OperaId == torolni_opera_ID
+                                  select x;
+            context.Előadás.Remove(torolni_eloadas.FirstOrDefault());
             context.OperaAdatoks.Remove(torolni_opera.FirstOrDefault());
             context.SaveChanges();
             Opera_Adatok_Filter();

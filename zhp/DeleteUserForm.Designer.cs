@@ -73,6 +73,7 @@
             Controls.Add(btn_remove);
             Name = "DeleteUserForm";
             Text = "DeleteUserForm";
+            Load += DeleteUserForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

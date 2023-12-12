@@ -16,5 +16,10 @@ namespace zhp
         {
             InitializeComponent();
         }
+
+        private void DeleteUserForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
